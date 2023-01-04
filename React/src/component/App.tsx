@@ -1,19 +1,17 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Signin from "./Signin";
 import { useSelector, useDispatch } from "react-redux";
 import { task_data } from "../actions";
 import { ITask } from "./Task.type";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Api from "./Api";
 import Add from "./AddTask";
-// import Edit from "./EditTask";
-import { useLocation } from "react-router-dom";
 import Edit from "./EditTask";
 
 const App = () => {
-  // const location = useLocation()
-  // const {data}=location.state
+  const [task, settask] = useState({} as ITask);
+
   const myState = useSelector((state: any) => state.task_detail_reducer);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,25 +21,22 @@ const App = () => {
         return dispatch(task_data(json.getTaskData));
       });
   }, []);
-  // const logout = () => {
-  //   localStorage.removeItem("username");
-  //   localStorage.removeItem("isSuccess");
-  //   localStorage.removeItem("userDetails");
-  // };
+
+  const pull_data = (data: ITask) => {
+    settask(data);
+  };
 
   return (
-   
-      <div>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Signin />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/add" element={<Add />} />
-            {/* <Route path="/edit" element={<Edit />} /> */}
-          </Routes>
-        </BrowserRouter>
-      </div>
-  
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Signin />} />
+          <Route path="/home" element={<Home pull_task={pull_data} />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/edit" element={<Edit data={task} />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 

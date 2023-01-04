@@ -1,9 +1,6 @@
 import axios from "axios";
 import { ITask } from "./Task.type";
 
-var userlist: [];
-var taskList: ITask[];
-
 async function GetUserList() {
   var result = await fetch("https://localhost:44310/api/Task/GetUserList");
   return result;
@@ -20,25 +17,6 @@ function GetUserTask() {
 function GetTaskAssignedByMe() {
   let username = localStorage.getItem("username");
   var result = fetch(`https://localhost:44310/api/Task/assignTask/${username}`);
-  return result;
-}
-
-
-function GetFilterTask(status: string, assign: string, priority: string) {
-  let username = localStorage.getItem("username");
-  var result = fetch(
-    `https://localhost:44310/api/Task/ReadTask/${username}/${status}/${assign}/${priority}`
-
-    // ​/api​/Task​/filterTask​/{request}​/{username}
-  );
-
-  return result;
-}
-
-function GetTaskbyId() {
-  const id = localStorage.getItem("Id");
-  var result = fetch(`https://localhost:44310/api/Task/TaskById/${id}`);
-
   return result;
 }
 
@@ -93,10 +71,6 @@ function UpdateTask(data: ITask) {
     });
 }
 
-function GetUpdate() {
-  window.location.reload();
-}
-
 export default {
   GetUserTask,
   GetUserList,
@@ -104,8 +78,5 @@ export default {
   DeleteTask,
   RejectTask,
   UpdateTask,
-  GetUpdate,
-  GetTaskbyId,
-  GetFilterTask,
   GetTaskAssignedByMe,
 };

@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { ITask } from "./Task.type";
 import "../CSS/TaskList.style.css";
-import { useSelector, useDispatch } from "react-redux";
-import { task_data } from "../actions";
+ 
 import Api from "./Api";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   onDeleteClickHnd: (data: ITask) => void;
-  onEdit: (data: ITask) => void;
   onReject: (data: ITask) => void;
+  pull_task: (data: ITask) => void;
 };
 
 const TaskList = (props: Props) => {
-  const { onDeleteClickHnd, onEdit, onReject } = props;
+  const { onDeleteClickHnd, onReject, pull_task } = props;
   const [taskList, setTaskList] = useState([] as ITask[]);
   const [status, setStatus] = useState("Status");
   const [priority, setPriority] = useState("Priority");
@@ -34,6 +34,8 @@ const TaskList = (props: Props) => {
         });
     }
   }, [taskList, status, assign, priority]);
+
+  const navigate = useNavigate();
   const handleReset = () => {
     setStatus("Status");
     setPriority("Priority");
@@ -43,28 +45,25 @@ const TaskList = (props: Props) => {
     setassign(true);
   };
 
+  const onclickEdit = (data: ITask) => {
+    pull_task(data);
+    navigate("/edit");
+  };
+
   return (
     <div>
       <article>
         <h3 className="list-header">Dashboard</h3>
-
-       
       </article>
       <div style={{ marginLeft: "900px", marginBottom: "10px" }}>
-      <input
-          
+        <input
           type="button"
           value="Assignbyme"
           onClick={handleonclickassign}
           className="add-employee-btn"
         />
-      <input
-        // style={{ marginLeft: "950px", marginBottom: "10px" }}
-        type="button"
-        value="reset"
-        onClick={() => handleReset()}
-      />
-</div>
+        <input type="button" value="reset" onClick={() => handleReset()} />
+      </div>
       <table>
         <thead>
           <tr>
@@ -72,7 +71,6 @@ const TaskList = (props: Props) => {
             <th>Description</th>
             <th>DueDate </th>
             <th>
-              {/* Status  */}
               <select
                 className="custom-select"
                 id="inputGroupSelect01"
@@ -80,7 +78,6 @@ const TaskList = (props: Props) => {
                   setStatus(e.target.value);
                 }}
               >
-                {/* {" "} */}
                 <option selected hidden value="Status">
                   Status
                 </option>
@@ -98,30 +95,14 @@ const TaskList = (props: Props) => {
                 }}
               >
                 <option selected hidden value="Priority">
-                  {/* {priority} */}
-                  Priority
+                  {priority}
                 </option>
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
               </select>
             </th>
-            <th>
-              {/* <select
-                className="custom-select"
-                id="inputGroupSelect01"
-                onChange={(e: any) => {
-                  setassign(e.target.value);
-                }}
-              >
-                <option selected value="AssignedTo">
-                  Assigned To Me
-                </option>
-                <option value="AssignedBy">Assigned By Me</option>
-              
-              </select> */}
-              AssignedTo
-            </th>
+            <th>AssignedTo</th>
 
             <th>Action </th>
           </tr>
@@ -154,7 +135,7 @@ const TaskList = (props: Props) => {
                       <input
                         type="button"
                         value="Edit"
-                        onClick={() => onEdit(task)}
+                        onClick={() => onclickEdit(task)}
                       />
                       <input
                         type="button"
@@ -177,6 +158,13 @@ const TaskList = (props: Props) => {
   );
 };
 export default TaskList;
+
+
+
+
+
+
+
 
 // import { useEffect, useState } from "react";
 // import { ITask } from "./Task.type";

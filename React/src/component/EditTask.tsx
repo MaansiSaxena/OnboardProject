@@ -4,10 +4,7 @@ import { ITask } from "./Task.type";
 import "../CSS/TaskForm.style.css";
 import ConnectedUserlist from "./ConnectedUserlist";
 import moment from "moment";
-import { Link, useLocation } from "react-router-dom";
-import { json } from "stream/consumers";
-import { useDispatch, useSelector } from "react-redux";
-import { edit_data } from "../actions";
+import { Link, useNavigate } from "react-router-dom";
 
 type Prop = {
   userlist: [];
@@ -30,10 +27,11 @@ const EditTask = (props: Prop) => {
   const [formattedDate, setformattedDate] = useState(
     new Date(moment(data.dueDate).format("MM/DD/YYYY"))
   );
+  const navigate = useNavigate();
 
-  useEffect(()=> {
-setformattedDate( new Date(moment(DueDate).format("MM/DD/YYYY")))
-  }) 
+  useEffect(() => {
+    setformattedDate(new Date(moment(DueDate).format("MM/DD/YYYY")));
+  });
 
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
@@ -41,31 +39,17 @@ setformattedDate( new Date(moment(DueDate).format("MM/DD/YYYY")))
       id: Id,
       title: Title,
       description: Description,
-      dueDate: DueDate ,
+      dueDate: DueDate,
       status: Status,
       priority: Priority,
       assignedTo: AssignedTo,
       assignedBy: AssignedBy,
     };
     Api.UpdateTask(updatedData);
-    window.location.reload();
-  };
-  const logout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("isSuccess");
-    localStorage.removeItem("userDetails");
+    navigate("/home");
   };
 
   return (
-  //   <> <article className="article-header">
-  //   <h1>Task Manager Application </h1>
-  //   <Link to="/">
-  //     {" "}
-  //     <button style={{ marginLeft: "1100px" }} onClick={logout}>
-  //       Logout
-  //     </button>
-  //   </Link>
-  // </article>
     <div className="form-container">
       <div>
         <h3>Update Task</h3>
@@ -117,7 +101,7 @@ setformattedDate( new Date(moment(DueDate).format("MM/DD/YYYY")))
               <input
                 style={{ height: "40px", width: "500px" }}
                 type="Date"
-               value={formattedDate.toLocaleDateString("en-CA")}
+                value={formattedDate.toLocaleDateString("en-CA")}
                 onChange={(e: any) => {
                   setDueDate(e.target.value);
                 }}
@@ -189,14 +173,9 @@ setformattedDate( new Date(moment(DueDate).format("MM/DD/YYYY")))
             </div>
           </div>
           <div>
-            
-            <input
-              style={{ margin: "10px" }}
-              type="button"
-              value="Back"
-              onClick={() => window.location.reload()}
-            />
-           
+            <Link to="/home">
+              <input style={{ margin: "10px" }} type="button" value="Back" />
+            </Link>
             <input type="submit" value="Update Task" />
           </div>
         </form>
@@ -205,45 +184,8 @@ setformattedDate( new Date(moment(DueDate).format("MM/DD/YYYY")))
     // </>
   );
 };
-
-// const Edit = () => {
-  // const [datas,setDatas] = useState("")
-  // let data: ITask = {
-  // (data.id = datas.id),
-  //       (data.title = datas.title),
-  //       (data.description = json.description);
-  //     (data.dueDate = json.dueDate),
-  //       (data.status = json.status),
-  //       (data.priority = json.priority),
-  //       (data.assignedTo = json.assignedTo),
-  //       (data.assignedBy = json.assignedBy);
-  // }
-  
-  // const ApiCalling = () => {
-  //   Api.GetTaskbyId()
-  //   .then((res) => res.json())
-  //   .then((json) => {
-  //     console.log(json.title);
-
-
-
-      // (data.id = json.id),
-      //   (data.title = json.title),
-      //   (data.description = json.description);
-      // (data.dueDate = json.dueDate),
-      //   (data.status = json.status),
-      //   (data.priority = json.priority),
-      //   (data.assignedTo = json.assignedTo),
-      //   (data.assignedBy = json.assignedBy);
-  //   });
-  // }
-   
-
-// ApiCalling()
 const Edit = (props: Props) => {
-
-   const { data } = props;
+  const { data } = props;
   return ConnectedUserlist(EditTask, data);
-  
 };
 export default Edit;

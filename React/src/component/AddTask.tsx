@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Api from "./Api";
 import { ITask } from "./Task.type";
 import "../CSS/TaskForm.style.css";
 import ConnectedUserlist from "./ConnectedUserlist";
 import { task_data } from "../actions";
 import { useDispatch } from "react-redux";
-import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 type Props = {
   userlist: [];
@@ -50,27 +50,9 @@ const AddTask = (props: Props) => {
 
     navigate("/home");
   };
-  const logout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("isSuccess");
-    localStorage.removeItem("userDetails");
-  };
-  if (localStorage.getItem("username") === null) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <>
-      {/* {" "} */}
-      <article className="article-header">
-        <h1>Task Manager Application </h1>
-        <Link to="/">
-          {/* {" "} */}
-          <button style={{ marginLeft: "1100px" }} onClick={logout}>
-            Logout
-          </button>
-        </Link>
-      </article>
       <div className="form-container">
         <div>
           <h3>Add Task</h3>
