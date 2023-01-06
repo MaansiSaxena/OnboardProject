@@ -9,14 +9,14 @@ namespace TaskManagerCrud.RepositoryLayer
 {
     public interface ITaskRepositoryLayer
     {
-        public Task<CreateTaskResponse> CreateTask(CreatetaskRequest request);
+        public Task<CreateTaskResponse> CreateTask(CreatetaskRequest taskData);
         public Task<List<ReadTaskData>> ReadTask(string username, string status, string assignby, string priority);
-        public Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest request);
+        public Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest updatedData);
         public Task<GetTaskResponse> GetTaskAssignedByMe(string username);
         public Task<DeleteTaskResponse> DeleteTask(int id);
         public Task<GetTaskResponse> GetTask(string request);
         public Task<RejectTaskResponse> RejectTask(int id);
-        public Task<string> LoginModel(LoginModelRequest request);
+        public Task<string> LoginModel(LoginModelRequest IdPass);
         public Task<List<string>> GetUserlist();
         public Task<GetTaskResponse> FilterTask(string request , string username);
         public Task<ReadTaskData> TaskById(string Id);

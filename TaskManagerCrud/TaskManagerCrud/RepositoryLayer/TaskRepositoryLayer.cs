@@ -26,7 +26,7 @@ namespace TaskManagerCrud.RepositoryLayer
             _sqlConnection = new SqlConnection(_configuration[key: "ConnectionStrings:DBSettingConnection"]);
         }
 
-        public async Task<CreateTaskResponse> CreateTask(CreatetaskRequest request)
+        public async Task<CreateTaskResponse> CreateTask(CreatetaskRequest taskData)
         {
             CreateTaskResponse response = new CreateTaskResponse();
             response.IsSuccess = true;
@@ -39,13 +39,13 @@ namespace TaskManagerCrud.RepositoryLayer
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue("@Title", request.title);
-                    sqlCommand.Parameters.AddWithValue("@Description", request.description);
-                    sqlCommand.Parameters.AddWithValue("@DueDate", request.dueDate);
-                    sqlCommand.Parameters.AddWithValue("@Status", request.status);
-                    sqlCommand.Parameters.AddWithValue("@Priority", request.priority);
-                    sqlCommand.Parameters.AddWithValue("@AssignedTo", request.assignedTo);
-                    sqlCommand.Parameters.AddWithValue("@AssignedBy", request.assignedBy);
+                    sqlCommand.Parameters.AddWithValue("@Title", taskData.title);
+                    sqlCommand.Parameters.AddWithValue("@Description", taskData.description);
+                    sqlCommand.Parameters.AddWithValue("@DueDate", taskData.dueDate);
+                    sqlCommand.Parameters.AddWithValue("@Status", taskData.status);
+                    sqlCommand.Parameters.AddWithValue("@Priority", taskData.priority);
+                    sqlCommand.Parameters.AddWithValue("@AssignedTo", taskData.assignedTo);
+                    sqlCommand.Parameters.AddWithValue("@AssignedBy", taskData.assignedBy);
                     await _sqlConnection.OpenAsync();
                     int Status = await sqlCommand.ExecuteNonQueryAsync();
                     if (Status <= 0)
@@ -209,7 +209,7 @@ namespace TaskManagerCrud.RepositoryLayer
             return response;
         }
 
-        public async Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest request)
+        public async Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest updatedData)
         {
             UpdateTaskResponse response = new UpdateTaskResponse();
             response.IsSuccess = true;
@@ -222,14 +222,14 @@ namespace TaskManagerCrud.RepositoryLayer
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Status", request.Status);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Title", request.Title);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Description", request.Description);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@AssignedTo", request.AssignedTo);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Priority", request.Priority);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@DueDate", request.DueDate);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Status", updatedData.Status);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Title", updatedData.Title);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Description", updatedData.Description);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@AssignedTo", updatedData.AssignedTo);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Priority", updatedData.Priority);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@DueDate", updatedData.DueDate);
                     //sqlCommand.Parameters.AddWithValue(parameterName: "@AssignedBy", request.AssignedBy);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Id", request.Id);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Id", updatedData.Id);
                     _sqlConnection.Open();
                     int Status = await sqlCommand.ExecuteNonQueryAsync();
                     if (Status <= 0)
@@ -339,7 +339,7 @@ namespace TaskManagerCrud.RepositoryLayer
         }
 
 
-        public async Task<string> LoginModel(LoginModelRequest request)
+        public async Task<string> LoginModel(LoginModelRequest IdPass)
         {
             LoginModelResponse response = new LoginModelResponse();
             response.IsSuccess = true;
@@ -352,10 +352,10 @@ namespace TaskManagerCrud.RepositoryLayer
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Username", request.username);
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@Password", request.Password);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Username", IdPass.username);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@Password", IdPass.Password);
 
-                    var username = request.username;
+                    var username = IdPass.username;
                     _sqlConnection.Open();
                     using (SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync())
                     {

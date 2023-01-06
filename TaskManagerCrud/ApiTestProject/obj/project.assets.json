@@ -5797,11 +5797,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\ApiTestProject\\ApiTestProject.csproj",
+      "projectUniqueName": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\ApiTestProject\\ApiTestProject.csproj",
       "projectName": "ApiTestProject",
-      "projectPath": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\ApiTestProject\\ApiTestProject.csproj",
+      "projectPath": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\ApiTestProject\\ApiTestProject.csproj",
       "packagesPath": "C:\\Users\\Mansi.saxena\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\ApiTestProject\\obj\\",
+      "outputPath": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\ApiTestProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5822,8 +5822,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj": {
-              "projectPath": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj"
+            "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj": {
+              "projectPath": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj"
             }
           }
         }

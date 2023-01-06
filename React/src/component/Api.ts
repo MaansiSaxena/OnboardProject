@@ -71,6 +71,11 @@ function UpdateTask(data: ITask) {
     });
 }
 
+function GetUpdate(){
+ window.location.reload() 
+}
+
+
 export default {
   GetUserTask,
   GetUserList,
@@ -79,4 +84,5 @@ export default {
   RejectTask,
   UpdateTask,
   GetTaskAssignedByMe,
+  GetUpdate,
 };

@@ -8,11 +8,11 @@ import { task_data } from "../actions";
 import { useDispatch } from "react-redux";
 
 type Props = {
-  pull_task: (data: ITask) => void;
+  pull_data_for_edit: (data: ITask) => void;
 };
 
 const Home = (props: Props) => {
-  const { pull_task } = props;
+  const { pull_data_for_edit } = props;
   const [shownPage, setShownPage] = useState(PageEnum.list);
   const dispatch = useDispatch();
 
@@ -72,7 +72,7 @@ const Home = (props: Props) => {
             <TaskList
               onDeleteClickHnd={deleteTask}
               onReject={RejectTask}
-              pull_task={pull_task}
+              pulltaskforedit={pull_data_for_edit}
             />
           </>
         )}

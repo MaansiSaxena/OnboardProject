@@ -31,7 +31,10 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Signin />} />
-          <Route path="/home" element={<Home pull_task={pull_data} />} />
+          <Route
+            path="/home"
+            element={<Home pull_data_for_edit={pull_data} />}
+          />
           <Route path="/add" element={<Add />} />
           <Route path="/edit" element={<Edit data={task} />} />
         </Routes>

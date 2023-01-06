@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj": {}
+    "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj": {
+    "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj",
+        "projectUniqueName": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj",
         "projectName": "TaskManagerCrud",
-        "projectPath": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj",
+        "projectPath": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\TaskManagerCrud.csproj",
         "packagesPath": "C:\\Users\\Mansi.saxena\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mansi.saxena\\source\\repos\\TaskManagerCrud\\TaskManagerCrud\\obj\\",
+        "outputPath": "C:\\Users\\Mansi.saxena\\OneDrive - Bhavna Software India Pvt.Ltd\\Desktop\\onboard\\TaskManagerCrud\\TaskManagerCrud\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

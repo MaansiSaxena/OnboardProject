@@ -21,12 +21,12 @@ namespace TaskManagerCrud.Controllers
 
         [HttpPost]
         [Route (template:"CreateTask")]
-        public async Task<IActionResult> CreateTask(CreatetaskRequest request)
+        public async Task<IActionResult> CreateTask(CreatetaskRequest taskData)
         {
             CreateTaskResponse response = null;
             try
             {
-                response = await _crudSL.CreateTask(request);
+                response = await _crudSL.CreateTask(taskData);
             }
             catch (Exception ex)
             {
@@ -57,12 +57,12 @@ namespace TaskManagerCrud.Controllers
 
         [HttpPut]
         [Route(template: "UpdateTask")]
-        public async Task<IActionResult> UpdateTask(UpdateTaskRequest request)
+        public async Task<IActionResult> UpdateTask(UpdateTaskRequest updatedData)
         {
             UpdateTaskResponse response = null;
             try
             {
-                response = await _crudSL.UpdateTask(request);
+                response = await _crudSL.UpdateTask(updatedData);
             }
             catch (Exception ex)
             {
@@ -146,13 +146,13 @@ namespace TaskManagerCrud.Controllers
 
         [HttpPost]
         [Route(template: "Login")]
-        public async Task<IActionResult> LoginModel(LoginModelRequest request)
+        public async Task<IActionResult> LoginModel(LoginModelRequest IdPass)
         {
             string response = "";
             try
             {
 
-                response = await _crudSL.LoginModel(request);
+                response = await _crudSL.LoginModel(IdPass);
                 return Ok(response);
             }
             catch (Exception ex)

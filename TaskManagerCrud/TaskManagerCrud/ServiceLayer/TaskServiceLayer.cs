@@ -16,9 +16,9 @@ namespace TaskManagerCrud.ServiceLayer
         {
             _crudRL = crudRL; 
         }
-        public async Task<CreateTaskResponse> CreateTask(CreatetaskRequest request)
+        public async Task<CreateTaskResponse> CreateTask(CreatetaskRequest taskData)
         {
-            return await _crudRL.CreateTask(request); 
+            return await _crudRL.CreateTask(taskData); 
         }
 
         public async Task<DeleteTaskResponse> DeleteTask(int id)
@@ -31,9 +31,9 @@ namespace TaskManagerCrud.ServiceLayer
             return await _crudRL.ReadTask( request, filter, assignby, priority);
         }
 
-        public async Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest request)
+        public async Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest updatedData)
         {
-            return await _crudRL.UpdateTask(request);
+            return await _crudRL.UpdateTask(updatedData);
         }
 
         public async Task<GetTaskResponse> GetTask(string request)
@@ -46,9 +46,9 @@ namespace TaskManagerCrud.ServiceLayer
             return await _crudRL.RejectTask(id);
         }
 
-        public async Task<string> LoginModel(LoginModelRequest request)
+        public async Task<string> LoginModel(LoginModelRequest IdPass)
         {
-            return await _crudRL.LoginModel(request);
+            return await _crudRL.LoginModel(IdPass);
         }
 
         public async Task<List<string>> GetUserlist()

@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import { ITask } from "./Task.type";
 import "../CSS/TaskList.style.css";
- 
 import Api from "./Api";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 type Props = {
   onDeleteClickHnd: (data: ITask) => void;
   onReject: (data: ITask) => void;
-  pull_task: (data: ITask) => void;
+  pulltaskforedit: (data: ITask) => void;
 };
 
 const TaskList = (props: Props) => {
-  const { onDeleteClickHnd, onReject, pull_task } = props;
+  const { onDeleteClickHnd, onReject, pulltaskforedit } = props;
   const [taskList, setTaskList] = useState([] as ITask[]);
   const [status, setStatus] = useState("Status");
   const [priority, setPriority] = useState("Priority");
   const [assign, setassign] = useState(false);
+
+  const priority_list = useSelector(
+    (state: any) => state.task_detail_reducer.priority
+  );
+  const status_list = useSelector(
+    (state: any) => state.task_detail_reducer.status
+  );
 
   useEffect(() => {
     if (assign) {
@@ -36,18 +43,20 @@ const TaskList = (props: Props) => {
   }, [taskList, status, assign, priority]);
 
   const navigate = useNavigate();
+
   const handleReset = () => {
-    setStatus("Status");
-    setPriority("Priority");
+    Api.GetUpdate();
     setassign(false);
   };
+
   const handleonclickassign = () => {
     setassign(true);
   };
 
   const onclickEdit = (data: ITask) => {
-    pull_task(data);
+    pulltaskforedit(data);
     navigate("/edit");
+    
   };
 
   return (
@@ -78,12 +87,12 @@ const TaskList = (props: Props) => {
                   setStatus(e.target.value);
                 }}
               >
-                <option selected hidden value="Status">
-                  Status
+                <option selected hidden value={status}>
+                  {status}
                 </option>
-                <option value="InProgress">In Progress</option>
-                <option value="ToDo">ToDo</option>
-                <option value="Complete">Complete</option>
+                {status_list.map((status_task: string) => {
+                  return <option value={status_task}>{status_task}</option>;
+                })}
               </select>
             </th>
             <th>
@@ -94,12 +103,12 @@ const TaskList = (props: Props) => {
                   setPriority(e.target.value);
                 }}
               >
-                <option selected hidden value="Priority">
+                <option selected hidden value={priority}>
                   {priority}
                 </option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+                {priority_list.map((priority_task: string) => {
+                  return <option value={priority_task}>{priority_task}</option>;
+                })}
               </select>
             </th>
             <th>AssignedTo</th>
@@ -158,13 +167,6 @@ const TaskList = (props: Props) => {
   );
 };
 export default TaskList;
-
-
-
-
-
-
-
 
 // import { useEffect, useState } from "react";
 // import { ITask } from "./Task.type";

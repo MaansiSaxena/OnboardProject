@@ -2,7 +2,10 @@ import { Task_Details } from "../actions";
 import { ITask } from "../component/Task.type";
 
 const initialState = {
+  status:[] = ["ToDo","Complete", "InProgress"],
+  priority:[] = ["High","Medium","Low"],
   tasks: [],
+
 };
 
 const task_detail_reducer = (
