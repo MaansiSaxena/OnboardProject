@@ -6,6 +6,7 @@ import { Link, Navigate } from "react-router-dom";
 import Api from "./Api";
 import { task_data } from "../actions";
 import { useDispatch } from "react-redux";
+import { Header } from "./Header";
 
 type Props = {
   pull_data_for_edit: (data: ITask) => void;
@@ -47,14 +48,7 @@ const Home = (props: Props) => {
 
   return (
     <>
-      <article className="article-header">
-        <h1>Task Manager Application </h1>
-        <Link to="/">
-          <button style={{ marginLeft: "1100px" }} onClick={logout}>
-            Logout
-          </button>
-        </Link>
-      </article>
+    <Header/>
 
       <section className="section-content">
         {shownPage === PageEnum.list && (

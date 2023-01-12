@@ -29,15 +29,17 @@ const Signin = () => {
     const { username, password } = formValue;
     setMessage("");
     setusername(username);
-
+const isAdmin = localStorage.getItem('isAdmin')
     return await axios
-      .post("https://localhost:44310/api/Task/Login", {
+      .post(`https://localhost:44310/api/Task/Login/${isAdmin}`, {
         username,
         password,
       })
       .then((response) => {
         localStorage.setItem("isSuccess", "true");
         localStorage.setItem("userDetails", response.data);
+        console.log(response)
+        localStorage.setItem("isAdmin", "true")
         if (localStorage.getItem("userDetails") === "") {
           localStorage.removeItem("userDetails");
           localStorage.removeItem("isSuccess");
