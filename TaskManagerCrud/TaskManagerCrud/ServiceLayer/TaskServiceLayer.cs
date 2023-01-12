@@ -36,9 +36,9 @@ namespace TaskManagerCrud.ServiceLayer
             return await _crudRL.UpdateTask(updatedData);
         }
 
-        public async Task<GetTaskResponse> GetTask(string request)
+        public async Task<GetTaskResponse> GetTask(string AssignedTo)
         {
-            return await _crudRL.GetTask(request);
+            return await _crudRL.GetTask(AssignedTo);
         }
 
         public async Task<RejectTaskResponse> RejectTask(int id)
@@ -46,9 +46,9 @@ namespace TaskManagerCrud.ServiceLayer
             return await _crudRL.RejectTask(id);
         }
 
-        public async Task<string> LoginModel(LoginModelRequest IdPass)
+        public async Task<string> LoginModel(LoginModelRequest IdPass, string isAdmin)
         {
-            return await _crudRL.LoginModel(IdPass);
+            return await _crudRL.LoginModel(IdPass, isAdmin);
         }
 
         public async Task<List<string>> GetUserlist()

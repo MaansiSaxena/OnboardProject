@@ -13,9 +13,9 @@ namespace TaskManagerCrud.ServiceLayer
         public Task<List<ReadTaskData>> ReadTask(string username, string status, string assignby, string priority);
         public Task<UpdateTaskResponse> UpdateTask(UpdateTaskRequest updatedData);
         public Task<DeleteTaskResponse> DeleteTask(int id);
-        public Task<GetTaskResponse> GetTask(string request);
+        public Task<GetTaskResponse> GetTask(string AssignedTo);
         public Task<RejectTaskResponse> RejectTask(int id);
-        public Task<string> LoginModel(LoginModelRequest IdPass);
+        public Task<string> LoginModel(LoginModelRequest IdPass, string isAdmin);
         public Task<List<string>> GetUserlist();
         public Task<GetTaskResponse> FilterTask(string request, string username);
         public Task<ReadTaskData> TaskById(string Id);

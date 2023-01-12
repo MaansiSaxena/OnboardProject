@@ -103,7 +103,6 @@ namespace TaskManagerCrud.RepositoryLayer
             return response;
         }
 
-
         public async Task<GetTaskResponse> GetTaskAssignedByMe(string username)
         {
             GetTaskResponse response = new GetTaskResponse();
@@ -252,7 +251,7 @@ namespace TaskManagerCrud.RepositoryLayer
             return response;
         }
 
-        public async Task<GetTaskResponse> GetTask(string request)
+        public async Task<GetTaskResponse> GetTask(string AssignedTo)
         {
 
             GetTaskResponse response = new GetTaskResponse();
@@ -266,7 +265,7 @@ namespace TaskManagerCrud.RepositoryLayer
 
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandTimeout = 180;
-                    sqlCommand.Parameters.AddWithValue(parameterName: "@AssignedTo", request);
+                    sqlCommand.Parameters.AddWithValue(parameterName: "@AssignedTo", AssignedTo);
                     _sqlConnection.Open();
                     using (SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync())
                     {
@@ -339,15 +338,36 @@ namespace TaskManagerCrud.RepositoryLayer
         }
 
 
-        public async Task<string> LoginModel(LoginModelRequest IdPass)
+        //public async Task<string> LoginModel(LoginModelRequest IdPass)
+        //{
+        //    LoginModelResponse response = new LoginModelResponse();
+        //    response.IsSuccess = true;
+        //    response.Message = "Successful";
+        //    response.Username = "";
+        //    var token = "";
+        //    try { 
+        //        string SqlQuery = "Select id from Login_Table where Username = @Username and Password = @Password";
+        //        using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _sqlConnection))
+        //        {
+        public async Task<string> LoginModel(LoginModelRequest IdPass, string isAdmin)
         {
+            string SqlQuery = "";
+            if (Convert.ToBoolean(isAdmin))
+            {
+                SqlQuery = "Select id from AdminLoginTable where Username = @Username and Password = @Password";
+            }
+            else
+            {
+                SqlQuery = "Select id from Login_Table where Username = @Username and Password = @Password";
+            }
             LoginModelResponse response = new LoginModelResponse();
             response.IsSuccess = true;
             response.Message = "Successful";
             response.Username = "";
             var token = "";
-            try { 
-                string SqlQuery = "Select id from Login_Table where Username = @Username and Password = @Password";
+            try
+            {
+                //string SqlQuery = "Select id from Login_Table where Username = @Username and Password = @Password";
                 using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _sqlConnection))
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;

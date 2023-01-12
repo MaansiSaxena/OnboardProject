@@ -30,8 +30,6 @@ namespace TaskManagerCrud.Controllers
             }
             catch (Exception ex)
             {
-                //response.IsSuccess = false;
-                //response.Message = ex.Message;
                 return BadRequest("not found");
             }
 
@@ -90,7 +88,7 @@ namespace TaskManagerCrud.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet] 
         [Route ( "GetUserTask/{AssignedTo}")]
         public async Task<IActionResult> GetTask(string AssignedTo)
         {
@@ -145,14 +143,14 @@ namespace TaskManagerCrud.Controllers
 
 
         [HttpPost]
-        [Route(template: "Login")]
-        public async Task<IActionResult> LoginModel(LoginModelRequest IdPass)
+        [Route(template: "Login/{isAdmin}")]
+        public async Task<IActionResult> LoginModel(LoginModelRequest IdPass, string isAdmin)
         {
             string response = "";
             try
             {
 
-                response = await _crudSL.LoginModel(IdPass);
+                response = await _crudSL.LoginModel(IdPass,isAdmin);
                 return Ok(response);
             }
             catch (Exception ex)
