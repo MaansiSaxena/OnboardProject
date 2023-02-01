@@ -11,6 +11,7 @@ const MainPage = () => {
           backgroundImage: "url(/main.jpg)",
           height: "100vh",
           backgroundRepeat: "no-repeat",
+          opacity: "1"
         }}
       >
         <h1
@@ -34,7 +35,7 @@ const MainPage = () => {
             fontFamily: "Georgia, serif",
           }}
           onClick={() => {localStorage.setItem("isAdmin", "true");
-          navigate("/Adlogin");
+          navigate("/Admin/login");
         }}
         >
           Admin
@@ -53,7 +54,7 @@ const MainPage = () => {
           }}
           onClick={() => {
             localStorage.setItem("isAdmin", "false");
-            navigate("/");
+            navigate("/login");
           }}
         >
           User

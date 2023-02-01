@@ -1,14 +1,16 @@
 .article-header {
-  background-color: rgb(41, 41, 131);
-  color: white;
+  background-color: #ADD8E6;
+  color: rgb(94, 52, 52);
   border: 3px solid transparent;
   text-align: center;
 }
 
 .section-content {
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 15px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 30px;
+  height: 450px;
+  padding-top: 10px;
 }
 
 .add-tasks-btn {

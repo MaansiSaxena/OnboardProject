@@ -60,11 +60,11 @@ const TaskList = (props: Props) => {
   };
 
   return (
-    <div>
+    <div >
       <article>
         <h3 className="list-header">Dashboard</h3>
       </article>
-      <div style={{ marginLeft: "900px", marginBottom: "10px" }}>
+      <div style={{ marginLeft: "900px", marginBottom: "10px"}}>
         <input
           type="button"
           value="Assignbyme"
@@ -73,7 +73,7 @@ const TaskList = (props: Props) => {
         />
         <input type="button" value="reset" onClick={() => handleReset()} />
       </div>
-      <table>
+      <table className="table table-bordered-dark">
         <thead>
           <tr>
             <th>Title</th>
@@ -167,6 +167,8 @@ const TaskList = (props: Props) => {
   );
 };
 export default TaskList;
+
+
 
 // import { useEffect, useState } from "react";
 // import { ITask } from "./Task.type";

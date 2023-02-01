@@ -18,8 +18,10 @@ namespace TaskManagerCrud.ServiceLayer
         public Task<string> LoginModel(LoginModelRequest IdPass, string isAdmin);
         public Task<List<string>> GetUserlist();
         public Task<GetTaskResponse> FilterTask(string request, string username);
+        public Task<GetTaskResponse> GetAllTasks();
         public Task<ReadTaskData> TaskById(string Id);
         public Task<Boolean> VBLogin(string username, string password);
         public Task<GetTaskResponse> GetTaskAssignedByMe(string username);
+        public Task<CreateUserResponse> CreateNewUser(UserDetails userDetails);
     }
 }

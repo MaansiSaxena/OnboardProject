@@ -38,8 +38,6 @@ const isAdmin = localStorage.getItem('isAdmin')
       .then((response) => {
         localStorage.setItem("isSuccess", "true");
         localStorage.setItem("userDetails", response.data);
-        console.log(response)
-        localStorage.setItem("isAdmin", "true")
         if (localStorage.getItem("userDetails") === "") {
           localStorage.removeItem("userDetails");
           localStorage.removeItem("isSuccess");
@@ -60,13 +58,15 @@ const isAdmin = localStorage.getItem('isAdmin')
   }
 
   return (
-    <>
-      <h2
+    <> 
+     <h2
         className=" d-flex justify-content-center"
-        style={{ marginTop: "5%" }}
+        style={{ marginTop: "2%" ,marginBottom: "1%" }}
       >
         Welcome to Task Manager Application.
       </h2>
+    <div style={{background:"#ADD8E6", height:"580px", padding:"68px" }}>
+     
       <div
         className="col-md-12"
         style={{
@@ -76,7 +76,7 @@ const isAdmin = localStorage.getItem('isAdmin')
           margin: "auto",
         }}
       >
-        <div className="card card-container">
+        <div className="card card-container" style={{padding:"5%"}}>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -136,6 +136,7 @@ const isAdmin = localStorage.getItem('isAdmin')
             </Form>
           </Formik>
         </div>
+      </div>
       </div>
     </>
   );

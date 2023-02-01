@@ -18,8 +18,11 @@ namespace TaskManagerCrud.RepositoryLayer
         public Task<RejectTaskResponse> RejectTask(int id);
         public Task<string> LoginModel(LoginModelRequest IdPass, string isAdmin);
         public Task<List<string>> GetUserlist();
+        
+        public Task<GetTaskResponse> GetAllTasks();
         public Task<GetTaskResponse> FilterTask(string request , string username);
         public Task<ReadTaskData> TaskById(string Id);
         public Task<Boolean> VBLogin(string username, string password);
+        public Task<CreateUserResponse> CreateNewUser(UserDetails userDetails);
     }
 }

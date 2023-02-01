@@ -49,11 +49,20 @@ const Home = (props: Props) => {
   return (
     <>
     <Header/>
+    <Link to="/add">
+              <input
+                style={{ marginLeft: "20px",marginTop:"20px",  }}
+                type="button"
+                value="Add Task"
+                onClick={onAddTaskClickHnd}
+                className="add-employee-btn"
+              />
+            </Link>
 
-      <section className="section-content">
+      <section className="section-content" style={{ background:"#ADD8E6"}}>
         {shownPage === PageEnum.list && (
           <>
-            <Link to="/add">
+            {/* <Link to="/add">
               <input
                 style={{ marginRight: "20px" }}
                 type="button"
@@ -61,7 +70,7 @@ const Home = (props: Props) => {
                 onClick={onAddTaskClickHnd}
                 className="add-employee-btn"
               />
-            </Link>
+            </Link> */}
 
             <TaskList
               onDeleteClickHnd={deleteTask}

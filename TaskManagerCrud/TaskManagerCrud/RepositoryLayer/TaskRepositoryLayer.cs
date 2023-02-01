@@ -337,18 +337,6 @@ namespace TaskManagerCrud.RepositoryLayer
             return response;
         }
 
-
-        //public async Task<string> LoginModel(LoginModelRequest IdPass)
-        //{
-        //    LoginModelResponse response = new LoginModelResponse();
-        //    response.IsSuccess = true;
-        //    response.Message = "Successful";
-        //    response.Username = "";
-        //    var token = "";
-        //    try { 
-        //        string SqlQuery = "Select id from Login_Table where Username = @Username and Password = @Password";
-        //        using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _sqlConnection))
-        //        {
         public async Task<string> LoginModel(LoginModelRequest IdPass, string isAdmin)
         {
             string SqlQuery = "";
@@ -452,6 +440,52 @@ namespace TaskManagerCrud.RepositoryLayer
 
             }
 
+            finally
+            {
+                _sqlConnection.Close();
+            }
+            return response;
+        }
+
+        public async Task<GetTaskResponse> GetAllTasks()
+        {
+            GetTaskResponse response = new GetTaskResponse();
+            response.IsSuccess = true;
+            response.Message = "successful";
+            try
+            {
+                string SqlQuery = "select * from Task_Table;";
+                using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _sqlConnection))
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandTimeout = 180;
+                    _sqlConnection.Open();
+                    using (SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync())
+                    {
+                        if (sqlDataReader.HasRows)
+                        {
+                            response.getTaskData = new List<GetTaskData>();
+                            while (await sqlDataReader.ReadAsync())
+                            {
+                                GetTaskData dbData = new GetTaskData();
+                                dbData.Id = sqlDataReader[name: "Id"] != DBNull.Value ? Convert.ToInt32(sqlDataReader[name: "Id"]) : 0;
+                                dbData.Title = sqlDataReader[name: "Title"] != DBNull.Value ? sqlDataReader[name: "Title"].ToString() : string.Empty;
+                                dbData.Description = sqlDataReader[name: "Description"] != DBNull.Value ? sqlDataReader[name: "Description"].ToString() : string.Empty;
+                                dbData.DueDate = sqlDataReader[name: "DueDate"] != DBNull.Value ? Convert.ToDateTime(sqlDataReader[name: "DueDate"]) : DateTime.Now;
+                                dbData.Status = sqlDataReader[name: "Status"] != DBNull.Value ? sqlDataReader[name: "Status"].ToString() : string.Empty;
+                                dbData.Priority = sqlDataReader[name: "Priority"] != DBNull.Value ? sqlDataReader[name: "Priority"].ToString() : string.Empty;
+                                dbData.AssignedTo = sqlDataReader[name: "AssignedTo"] != DBNull.Value ? sqlDataReader[name: "AssignedTo"].ToString() : string.Empty;
+                                dbData.AssignedBy = sqlDataReader[name: "AssignedBy"] != DBNull.Value ? sqlDataReader[name: "AssignedBy"].ToString() : string.Empty;
+                                response.getTaskData.Add(dbData);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
             finally
             {
                 _sqlConnection.Close();
@@ -587,6 +621,40 @@ namespace TaskManagerCrud.RepositoryLayer
             return res;
         }
 
+        public async Task<CreateUserResponse> CreateNewUser(UserDetails userDetails)
+        {
+            CreateUserResponse response = new CreateUserResponse();
+            response.IsSuccess = true;
+            response.Message = "Successful";
+            try
+            {
+                string SqlQuery = "Insert into Login_Table(Username,Password) values(@Username,@Password)";
+                using (SqlCommand sqlCommand = new SqlCommand(SqlQuery, _sqlConnection))
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandTimeout = 180;
+                    sqlCommand.Parameters.AddWithValue("@Username", userDetails.Username);
+                    sqlCommand.Parameters.AddWithValue("@Password", userDetails.Password);
+                    await _sqlConnection.OpenAsync();
+                    int Status = await sqlCommand.ExecuteNonQueryAsync();
+                    if (Status <= 0)
+                    {
+                        response.IsSuccess = false;
+                        response.Message = "Create Information Not Executed";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+            return response;
+        }
     }
 }
     

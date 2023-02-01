@@ -8,9 +8,12 @@ import { useEffect, useState } from "react";
 import Api from "./Api";
 import Add from "./AddTask";
 import Edit from "./EditTask";
-import MainPage  from "./MainPage";
+import MainPage from "./MainPage";
 import LoginAdmin from "./Adminn/LoginAdmin";
-
+import AdminHome from "./Adminn/AdminHome";
+import AddNewUser from "./Adminn/AddNewUser";
+import GetAllUser from "./Adminn/GetAllUser";
+import UserTask from "./Adminn/UserTask";
 
 const App = () => {
   const [task, settask] = useState({} as ITask);
@@ -33,16 +36,20 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Signin />} />
-          <Route path="/main" element={<MainPage />} />
-         
+          <Route path="/login" element={<Signin />} />
+          <Route path="/" element={<MainPage />} />
+
           <Route
             path="/home"
             element={<Home pull_data_for_edit={pull_data} />}
           />
           <Route path="/add" element={<Add />} />
           <Route path="/edit" element={<Edit data={task} />} />
-          <Route path="/Adlogin" element={<LoginAdmin />} />
+          <Route path="/Admin/login" element={<LoginAdmin />} />
+          <Route path="/Admin/home" element={<AdminHome />} />
+          <Route path="/Admin/addnewuser" element={<AddNewUser />} />
+          <Route path="/Admin/getalluser" element={<GetAllUser />} />
+          <Route path="/Admin/usertask" element={<UserTask />} />
         </Routes>
       </BrowserRouter>
     </div>

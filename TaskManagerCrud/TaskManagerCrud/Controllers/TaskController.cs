@@ -241,6 +241,41 @@ namespace TaskManagerCrud.Controllers
             //return StatusCode(200,response);
         }
 
+        [HttpGet]
+        [Route("getalltasks")]
+        public async Task<IActionResult> GetAllTasks()
+        {
+            GetTaskResponse response = null;
+            try
+            {
+                response = await _crudSL.GetAllTasks();
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route(template: "CreateNewUser")]
+        public async Task<IActionResult> CreateNewUser(UserDetails userDetails)
+        {
+            CreateUserResponse response = null;
+            try
+            {
+                response =  await _crudSL.CreateNewUser(userDetails);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("not found");
+            }
+
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route(template: "vbLogin")]
         public async Task<IActionResult> VBLogin(string username, string password)

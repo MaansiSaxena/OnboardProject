@@ -56,6 +56,11 @@ namespace TaskManagerCrud.ServiceLayer
             return await _crudRL.GetUserlist();
         }
 
+        public async Task<GetTaskResponse> GetAllTasks()
+        {
+            return await _crudRL.GetAllTasks();
+        }
+
         public async Task<GetTaskResponse> FilterTask(string request , string username)
         {
             return await _crudRL.FilterTask(request , username);
@@ -74,6 +79,11 @@ namespace TaskManagerCrud.ServiceLayer
         public async Task<GetTaskResponse> GetTaskAssignedByMe(string username)
         {
             return await _crudRL.GetTaskAssignedByMe(username);
+        }
+
+        public async Task<CreateUserResponse> CreateNewUser(UserDetails userDetails)
+        {
+             return await _crudRL.CreateNewUser(userDetails);
         }
     }
 }
